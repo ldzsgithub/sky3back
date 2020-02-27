@@ -15,6 +15,7 @@ public class BaseController {
     private BaseServiceImpl baseService;
     @RequestMapping("/selectUserById")
     public JsonResult selectUserById(String id) {
+        System.out.println("我是controller");
         return new JsonResult(baseService.selectUserById(id));
     }
 }
