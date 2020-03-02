@@ -1,6 +1,7 @@
 package com.ask.sky3back.controller;
 
 import com.ask.sky3back.common.JsonResult;
+import com.ask.sky3back.common.anno.validate.RE;
 import com.ask.sky3back.service.serviceImpl.BaseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,8 +15,9 @@ public class BaseController {
     @Autowired
     private BaseServiceImpl baseService;
     @RequestMapping("/selectUserById")
-    public JsonResult selectUserById(String id) {
+    public JsonResult selectUserById(String id, @RE String phoneNumber) throws Throwable{
         System.out.println("我是controller");
+        System.out.println("我是controller"+phoneNumber);
         return new JsonResult(baseService.selectUserById(id));
     }
 }

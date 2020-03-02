@@ -1,4 +1,4 @@
-package com.ask.sky3back.anno;
+package com.ask.sky3back.common.anno;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

@@ -1,4 +1,4 @@
-package com.ask.sky3back.interceptor;
+package com.ask.sky3back.common.interceptor;
 
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;

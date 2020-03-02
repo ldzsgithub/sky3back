@@ -1,4 +1,4 @@
-package com.ask.sky3back.filter;
+package com.ask.sky3back.common.filter;
 
 import org.springframework.stereotype.Component;
 
@@ -18,7 +18,7 @@ public class MyFilter2 implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        System.out.println("filter2");
+        //System.out.println("filter2");
         filterChain.doFilter(servletRequest,servletResponse);
     }
 

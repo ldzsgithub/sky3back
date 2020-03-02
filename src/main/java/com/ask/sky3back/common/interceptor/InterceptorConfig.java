@@ -1,4 +1,4 @@
-package com.ask.sky3back.interceptor;
+package com.ask.sky3back.common.interceptor;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
