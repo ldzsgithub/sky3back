@@ -15,4 +15,6 @@ public class BaseServiceImpl implements BaseService {
     public User selectUserById(String id) {
         return baseMapper.selectUserById(id);
     }
+
+
 }

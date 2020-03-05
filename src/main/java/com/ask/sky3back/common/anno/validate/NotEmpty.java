@@ -7,6 +7,7 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.PARAMETER)
-public @interface NotNull {
+public @interface NotEmpty {
     String msg() default "参数不能为空";
+    int code() default -1;
 }

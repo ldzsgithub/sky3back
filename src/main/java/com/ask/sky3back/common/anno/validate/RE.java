@@ -13,4 +13,8 @@ public @interface RE {
     String number_letter_underline="^\\w+$";
     String email="\\w[-\\w.+]*@([A-Za-z0-9][-A-Za-z0-9]+\\.)+[A-Za-z]{2,14}";
     String phone="^1(\\d{10})$";
+
+    String msg() default "格式错误";
+    String re();
+    int code() default -1;
 }
