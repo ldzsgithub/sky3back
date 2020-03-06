@@ -9,4 +9,5 @@ import java.lang.annotation.Target;
 @Target(ElementType.PARAMETER)
 public @interface NotNull {
     String msg() default "参数不能为空";
+    int code() default -1;
 }

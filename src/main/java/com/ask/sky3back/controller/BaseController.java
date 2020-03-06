@@ -17,13 +17,8 @@ public class BaseController {
     private BaseServiceImpl baseService;
 
     @RequestMapping("/selectUserById")
-    public JsonResult selectUserById(String id, @NotEmpty(msg = "asdww11") String phoneNumber) {
-        System.out.println("我是controller");
-        System.out.println("我是controller"+phoneNumber);
+    public JsonResult selectUserById(String id, @NotEmpty(msg = "自定义的错误信息") String phoneNumber) {
         return new JsonResult(baseService.selectUserById(id));
     }
 
-    public JsonResult sss(String msg) {
-        return new JsonResult(msg);
-    }
 }

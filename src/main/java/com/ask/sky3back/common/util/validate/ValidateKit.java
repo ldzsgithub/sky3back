@@ -1,6 +1,7 @@
 package com.ask.sky3back.common.util.validate;
 
 import com.ask.sky3back.common.anno.validate.*;
+import com.ask.sky3back.common.GlobalExceptionHandler;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,7 +14,13 @@ import java.util.regex.Pattern;
 
 public class ValidateKit {
 
-    public static Object validate(ProceedingJoinPoint joinPoint) throws Exception{
+    public static Object validate(ProceedingJoinPoint joinPoint) {
+        Object o = null;
+        try {
+            o = joinPoint.proceed();
+        } catch (Throwable e) {
+            e.printStackTrace();
+        }
         Method method = ((MethodSignature) joinPoint.getSignature()).getMethod();
         if(method == null || method.getAnnotation(RequestMapping.class) == null) {
             return null;
@@ -23,46 +30,34 @@ public class ValidateKit {
         for (int i = 0; i < args.length; i++) {
             Annotation[] annotations = parameters[i].getAnnotations();
             for (Annotation annotation : annotations) {
-                String msg = check(annotation, args[i]);
-                System.out.println(msg + "***********************");
-                if(msg!=null) {
-                    return msg;
+                try {
+                    check(annotation, args[i]);
+                } catch (ValidateException e) {
+                    return GlobalExceptionHandler.validateExceptionHandler(e.getMsg(), e.getCode());
                 }
             }
         }
-        return null;
+        return o;
     }
 
-    public static String check(Annotation annotation, Object arg) {
+    public static String check(Annotation annotation, Object arg) throws ValidateException{
         if(annotation.annotationType() == NotNull.class) {
-            if(isNull(arg)) {
-                return ((NotNull)annotation).msg();
-            }
+            if(isNull(arg)) throw new ValidateException(((NotNull)annotation).msg(), ((NotNull)annotation).code());
         }
         if(annotation.annotationType() == NotEmpty.class) {
-            if(isEmpty(arg)) {
-                return ((NotEmpty)annotation).msg();
-            }
+            if(isEmpty(arg)) throw new ValidateException(((NotEmpty)annotation).msg(), ((NotEmpty)annotation).code());
         }
         if(annotation.annotationType() == RE.class) {
-            if(re(arg, ((RE) annotation).re())){
-                return ((RE)annotation).msg();
-            }
+            if(re(arg, ((RE) annotation).re())) throw new ValidateException(((RE)annotation).msg(), ((RE)annotation).code());
         }
         if(annotation.annotationType() == MaxSize.class) {
-            if(maxSize(arg, ((MaxSize)annotation).length())){
-                return ((MaxSize)annotation).msg();
-            }
+            if(maxSize(arg, ((MaxSize)annotation).length())) throw new ValidateException(((MaxSize)annotation).msg(), ((MaxSize)annotation).code());
         }
         if(annotation.annotationType() == MinSize.class) {
-            if(minSize(arg, ((MinSize)annotation).length())){
-                return ((MinSize)annotation).msg();
-            }
+            if(minSize(arg, ((MinSize)annotation).length())) throw new ValidateException(((MinSize)annotation).msg(), ((MinSize)annotation).code());
         }
         if(annotation.annotationType() == Size.class) {
-            if(size(arg, ((Size)annotation).length())){
-                return ((Size)annotation).msg();
-            }
+            if(size(arg, ((Size)annotation).length())) throw new ValidateException(((Size)annotation).msg(), ((Size)annotation).code());
         }
         return null;
     }
@@ -124,4 +119,5 @@ public class ValidateKit {
     private static boolean isNull(Object arg) {
         return arg == null;
     }
+
 }

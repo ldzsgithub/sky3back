@@ -1,71 +1,66 @@
 package com.ask.sky3back.common;
 
-import java.io.Serializable;
+public class JsonResult<T> {
 
-public class JsonResult<T> implements Serializable {
-    public static final int SUCCESS=0;
-    public static final int ERROR=1;
-    public static final int OTHER=2;
-
+    private String msg;
     private int state;
-    private String message = "";
     private T data;
-    private String pass="";
 
-    public JsonResult(){
-        state = SUCCESS;
+    public JsonResult() {
+        this(ResultStatus.SUCCESS);
     }
-    public JsonResult(int state, String message, T data) {
-        super();
+
+    public JsonResult(String msg, int state, T data) {
+        this.msg = msg;
         this.state = state;
-        this.message = message;
         this.data = data;
     }
-    public JsonResult(int state,String error){
-        this(state,error,null);
-    }
-    public JsonResult(int state,T data){
-        this(state,"",data);
-    }
-    public JsonResult(String error){
-        this(ERROR,error,null);
+
+    public JsonResult(ResultStatus resultStatusCode) {
+        this.msg = resultStatusCode.getMsg();
+        this.state = resultStatusCode.getCode();
+        this.data = null;
     }
 
-    public JsonResult(T data){
-        this(SUCCESS,"",data);
+    public JsonResult(ResultStatus resultStatusCode, T obj) {
+        this.msg = resultStatusCode.getMsg();
+        this.state = resultStatusCode.getCode();
+        this.data = obj;
     }
-    public JsonResult(int state){
-        this(state,"",null);
+
+    public JsonResult(T obj) {
+        this.msg = ResultStatus.SUCCESS.getMsg();
+        this.state = ResultStatus.SUCCESS.getCode();
+        this.data = obj;
     }
-    public JsonResult(Throwable e){
-        this(ERROR,e.getMessage(),null);
+
+    public String getMsg() {
+        return msg;
     }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+
     public int getState() {
         return state;
     }
+
     public void setState(int state) {
         this.state = state;
     }
-    public String getMessage() {
-        return message;
-    }
-    public void setMessage(String message) {
-        this.message = message;
-    }
+
     public T getData() {
         return data;
     }
-    public void setData(T data) {
-        this.data = data;
+
+    public void setData(T date) {
+        this.data = date;
     }
-    public static int getSuccess() {
-        return SUCCESS;
-    }
-    public static int getError() {
-        return ERROR;
-    }
+
     @Override
     public String toString() {
-        return "JsonResult [state=" + state + ", message=" + message + ", pass=" + pass + ", data=" + data + "]";
+        return "JsonResult [state=" + state + ", msg=" + msg  + ", data=" + data + "]";
     }
+
 }
