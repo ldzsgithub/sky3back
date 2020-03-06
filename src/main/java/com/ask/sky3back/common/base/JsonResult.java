@@ -1,4 +1,4 @@
-package com.ask.sky3back.common;
+package com.ask.sky3back.common.base;
 
 public class JsonResult<T> {
 

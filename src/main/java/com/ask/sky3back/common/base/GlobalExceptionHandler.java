@@ -1,7 +1,5 @@
-package com.ask.sky3back.common;
+package com.ask.sky3back.common.base;
 
-import com.ask.sky3back.common.JsonResult;
-import com.ask.sky3back.common.util.validate.ValidateException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ResponseBody;
 

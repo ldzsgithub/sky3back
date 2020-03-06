@@ -1,6 +1,6 @@
 package com.ask.sky3back.controller;
 
-import com.ask.sky3back.common.JsonResult;
+import com.ask.sky3back.common.base.JsonResult;
 import com.ask.sky3back.common.anno.validate.NotEmpty;
 import com.ask.sky3back.service.serviceImpl.BaseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;

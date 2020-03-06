@@ -1,7 +1,7 @@
 package com.ask.sky3back.common.util.validate;
 
 import com.ask.sky3back.common.anno.validate.*;
-import com.ask.sky3back.common.GlobalExceptionHandler;
+import com.ask.sky3back.common.base.GlobalExceptionHandler;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.web.bind.annotation.RequestMapping;
