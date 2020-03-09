@@ -15,12 +15,6 @@ import java.util.regex.Pattern;
 public class ValidateKit {
 
     public static Object validate(ProceedingJoinPoint joinPoint) {
-        Object o = null;
-        try {
-            o = joinPoint.proceed();
-        } catch (Throwable e) {
-            e.printStackTrace();
-        }
         Method method = ((MethodSignature) joinPoint.getSignature()).getMethod();
         if(method == null || method.getAnnotation(RequestMapping.class) == null) {
             return null;
@@ -33,14 +27,20 @@ public class ValidateKit {
                 try {
                     check(annotation, args[i]);
                 } catch (ValidateException e) {
-                    return GlobalExceptionHandler.validateExceptionHandler(e.getMsg(), e.getCode());
+                    return GlobalExceptionHandler.baseExceptionHandler(e.getMsg(), e.getCode());
                 }
             }
+        }
+        Object o = null;
+        try {
+            o = joinPoint.proceed();
+        } catch (Throwable e) {
+            e.printStackTrace();
         }
         return o;
     }
 
-    public static String check(Annotation annotation, Object arg) throws ValidateException{
+    private static String check(Annotation annotation, Object arg) throws ValidateException{
         if(annotation.annotationType() == NotNull.class) {
             if(isNull(arg)) throw new ValidateException(((NotNull)annotation).msg(), ((NotNull)annotation).code());
         }

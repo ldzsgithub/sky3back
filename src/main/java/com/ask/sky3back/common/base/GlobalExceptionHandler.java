@@ -8,7 +8,7 @@ public class GlobalExceptionHandler {
 
     //@ExceptionHandler({ ValidateException.class })
     @ResponseBody
-    public static JsonResult validateExceptionHandler(String msg, int code) {
+    public static JsonResult baseExceptionHandler(String msg, int code) {
         return new JsonResult(msg, code, "");
     }
 }
