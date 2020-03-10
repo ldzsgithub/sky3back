@@ -17,8 +17,7 @@ public class ValidateAspect {
     public void pointcut(){}
 
     @Around("pointcut()")
-    public Object validateAspect(ProceedingJoinPoint joinPoint) {
-        System.out.println("aspect1");
+    public Object around(ProceedingJoinPoint joinPoint) {
         return ValidateKit.validate(joinPoint);
     }
 

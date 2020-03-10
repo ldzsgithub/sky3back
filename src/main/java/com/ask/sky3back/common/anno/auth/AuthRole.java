@@ -9,4 +9,6 @@ import java.lang.reflect.Method;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
 public @interface AuthRole {
+    //0超级管理员 1管理员 2普通用户
+    int level() default 1;
 }

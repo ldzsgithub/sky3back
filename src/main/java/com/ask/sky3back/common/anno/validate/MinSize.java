@@ -8,7 +8,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.PARAMETER)
 public @interface MinSize {
-    String msg();
+    String msg() default "长度太短";
     int code() default -1;
     int length();
 }

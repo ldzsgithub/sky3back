@@ -1,12 +1,15 @@
 package com.ask.sky3back.common.base;
 
-import java.io.Serializable;
-
 public enum ResultStatus {
     SUCCESS(0, "成功"),
     ERROR(1, "异常"),
 
-    NOT_FOUND_TOKEN(2, "参数[token]缺失!"),
+    SUCCESS_REGISTER(0,"注册成功"),
+    LOGIN_FAIL(1,"登陆失败,账号或密码错误"),
+    TOKEN_LOST(2, "参数[token]缺失!"),
+
+    AUTH_ROLE(1,"当前用户权限不足"),
+    AUTH_PERMISSION(1,"当前用户不属于该部门"),
 
     ERROR_USERNAME_EMPTY(2,"用户名不能为空"),
     ERROR_PASSWORD_EMPTY(2,"密码不能为空"),

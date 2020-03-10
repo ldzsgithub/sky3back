@@ -16,15 +16,15 @@ public class JsonResult<T> {
         this.data = data;
     }
 
-    public JsonResult(ResultStatus resultStatusCode) {
-        this.msg = resultStatusCode.getMsg();
-        this.state = resultStatusCode.getCode();
+    public JsonResult(ResultStatus resultStatus) {
+        this.msg = resultStatus.getMsg();
+        this.state = resultStatus.getCode();
         this.data = null;
     }
 
-    public JsonResult(ResultStatus resultStatusCode, T obj) {
-        this.msg = resultStatusCode.getMsg();
-        this.state = resultStatusCode.getCode();
+    public JsonResult(ResultStatus resultStatus, T obj) {
+        this.msg = resultStatus.getMsg();
+        this.state = resultStatus.getCode();
         this.data = obj;
     }
 

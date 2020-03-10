@@ -18,7 +18,6 @@ public class AuthAspect {
 
     @Around("pointcut()")
     public Object validateAspect(ProceedingJoinPoint joinPoint) {
-        System.out.println("aspect2");
         return AuthKit.auth(joinPoint);
     }
 
