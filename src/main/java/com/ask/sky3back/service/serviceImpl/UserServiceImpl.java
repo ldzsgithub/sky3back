@@ -1,7 +1,11 @@
 package com.ask.sky3back.service.serviceImpl;
 
 import com.ask.sky3back.bean.User;
+import com.ask.sky3back.common.base.Constant;
+import com.ask.sky3back.common.base.JsonResult;
+import com.ask.sky3back.common.base.ResultStatus;
 import com.ask.sky3back.common.util.MD5;
+import com.ask.sky3back.common.util.UUID;
 import com.ask.sky3back.mapper.UserMapper;
 import com.ask.sky3back.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,11 +18,16 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
     @Override
-    public void insertUser(User user) {
-        if(userMapper.selectUserByUsername(user.getUserName()) == null) {
-
+    public boolean registerUser(User user) {
+        if(userMapper.selectUserByUsernameAll(user.getUsername()) != null) {
+            return false;
         };
+        user.setId(UUID.getUUID());
+        user.setLoginflag(Constant.DEFAULT_USER_ROLE);
+        user.setAuthority(Constant.DEFAULT_USER_PERMISSION);
+        user.setStatus(Constant.DEFAULT_USER_STATE);
         userMapper.insertUser(user);
+        return true;
     }
 
     @Override

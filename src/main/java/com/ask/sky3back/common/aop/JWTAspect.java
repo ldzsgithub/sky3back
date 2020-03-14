@@ -1,6 +1,7 @@
 package com.ask.sky3back.common.aop;
 
 import com.ask.sky3back.common.base.GlobalExceptionHandler;
+import com.ask.sky3back.common.base.ResultStatus;
 import com.ask.sky3back.common.util.JWT.JWT;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -27,13 +28,13 @@ public class JWTAspect {
     @Around("pointcut()")
     public Object validateAspect(ProceedingJoinPoint joinPoint) throws Throwable {
         Method method = ((MethodSignature) joinPoint.getSignature()).getMethod();
-        if(method.getName() != null && method.getName().equals("login")) {
+        if(method.getName() != null && (method.getName().equals("login") || method.getName().equals("register"))) {
             return joinPoint.proceed();
         };
         if(JWT.verify()) {
             return joinPoint.proceed();
         };
-        return GlobalExceptionHandler.baseExceptionHandler("登录状态错误,请重新登录", -1);
+        return GlobalExceptionHandler.baseExceptionHandler(ResultStatus.JWT_LOST);
     }
 
 }

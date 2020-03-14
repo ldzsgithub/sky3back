@@ -4,7 +4,7 @@ import com.ask.sky3back.bean.User;
 
 public interface UserService {
 
-    void insertUser(User user);
+    boolean registerUser(User user);
 
     void deleteUserById(String id);
 

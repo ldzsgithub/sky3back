@@ -5,8 +5,9 @@ public enum ResultStatus {
     ERROR(1, "异常"),
 
     SUCCESS_REGISTER(0,"注册成功"),
+    REGISTER_FAIL_EXIST(1, "注册失败,用户名已经存在"),
     LOGIN_FAIL(1,"登陆失败,账号或密码错误"),
-    TOKEN_LOST(2, "参数[token]缺失!"),
+    JWT_LOST(2, "登录状态错误"),
 
     AUTH_ROLE(1,"当前用户权限不足"),
     AUTH_PERMISSION(1,"当前用户不属于该部门"),

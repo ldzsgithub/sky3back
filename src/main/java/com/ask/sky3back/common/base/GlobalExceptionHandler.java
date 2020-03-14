@@ -11,4 +11,9 @@ public class GlobalExceptionHandler {
     public static JsonResult baseExceptionHandler(String msg, int code) {
         return new JsonResult(msg, code, "");
     }
+
+    @ResponseBody
+    public static JsonResult baseExceptionHandler(ResultStatus resultStatus) {
+        return new JsonResult(resultStatus, "");
+    }
 }

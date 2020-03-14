@@ -33,7 +33,7 @@ public class AuthKit {
 
         User user = userService.selectUserByUsername(username);
         if(method.getAnnotation(AuthRole.class) != null) {
-            if(user.getRole() < method.getAnnotation(AuthRole.class).level()) {
+            if(user.getLoginflag() < method.getAnnotation(AuthRole.class).level()) {
                 return GlobalExceptionHandler.baseExceptionHandler(ResultStatus.AUTH_ROLE.getMsg(), ResultStatus.AUTH_ROLE.getCode());
             };
         }
