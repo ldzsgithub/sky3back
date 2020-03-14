@@ -2,8 +2,6 @@ package com.ask.sky3back.service.serviceImpl;
 
 import com.ask.sky3back.bean.User;
 import com.ask.sky3back.common.base.Constant;
-import com.ask.sky3back.common.base.JsonResult;
-import com.ask.sky3back.common.base.ResultStatus;
 import com.ask.sky3back.common.util.MD5;
 import com.ask.sky3back.common.util.UUID;
 import com.ask.sky3back.mapper.UserMapper;
@@ -55,7 +53,7 @@ public class UserServiceImpl implements UserService {
         User user = userMapper.selectUserByUsername(username);
         if(user == null) return null;
         if(user.getPassword() != null && user.getPassword().equals(password)) {
-            return MD5.MD5(username);
+            return MD5.getmd5(username);
         }
         return null;
     }

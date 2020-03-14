@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ask.sky3back.mapper.DepartmentMapper">
+    <update id="updateUsers" parameterType="com.jy23.entity.Users">
+        update Ask_User
+        <set>
+            <if test="name != null ">
+                name = #{name},
+            </if>
+            <if test="password != null ">
+                password = #{password},
+            </if>
+            <if test="authority != null ">
+                authority = #{authority},
+            </if>
+            <if test="loginflag != null ">
+                loginflag = #{loginflag},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteUsers" parameterType="java.lang.String">
+		delete from Ask_User
+		where id = #{id}
+	</delete>
+</mapper>

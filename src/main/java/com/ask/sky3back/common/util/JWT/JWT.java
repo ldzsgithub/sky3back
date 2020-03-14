@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 public class JWT {
 
     public static String creat(String user) {
-        return MD5.MD5(user);
+        return MD5.getmd5(user);
     }
 
     public static boolean verify() {
@@ -21,7 +21,7 @@ public class JWT {
         String JWT = request.getHeader("JWT");
         String user = request.getHeader("user");
         if(JWT != null && user != null) {
-            return JWT.equals(MD5.MD5(user));
+            return JWT.equals(MD5.getmd5(user));
         }
         return false;
     }
