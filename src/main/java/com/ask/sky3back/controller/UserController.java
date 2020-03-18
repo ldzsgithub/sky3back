@@ -43,4 +43,21 @@ public class UserController {
         return new JsonResult(ResultStatus.REGISTER_FAIL_EXIST);
     }
 
+    @RequestMapping()
+    public JsonResult updateUser() {
+
+        return new JsonResult();
+    }
+
+    @RequestMapping()
+    public JsonResult selectUser() {
+
+        return new JsonResult();
+    }
+
+    @RequestMapping()
+    public JsonResult deleteUser() {
+
+        return new JsonResult();
+    }
 }

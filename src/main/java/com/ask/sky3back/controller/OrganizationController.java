@@ -14,4 +14,10 @@ public class OrganizationController {
 
         return new JsonResult();
     }
+
+    @RequestMapping()
+    public JsonResult updateUser() {
+
+        return new JsonResult();
+    }
 }
