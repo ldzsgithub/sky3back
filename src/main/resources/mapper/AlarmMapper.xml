@@ -2,4 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ask.sky3back.mapper.AlarmMapper">
 
+    <select id="selectByHostId" resultType="com.ask.sky3back.bean.Probe" parameterType="int">
+        SELECT * FROM ASK_PROBE
+        <where>
+            <if test="hostId != 0 ">
+                host_id = #{hostId}
+            </if>
+        </where>
+    </select>
 </mapper>
