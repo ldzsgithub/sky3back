@@ -31,4 +31,28 @@ public class MD5 {
         }
     }
 
+    public final static String charToUnicode(String s) {
+        s = (s == null ? "" : s);
+        String tmp;
+        StringBuffer sb = new StringBuffer(1000);
+        char c;
+        int i, j;
+        sb.setLength(0);
+        for (i = 0; i < s.length(); i++) {
+            c = s.charAt(i);
+            sb.append("\\u");
+            j = (c >>>8); //取出高8位 
+            tmp = Integer.toHexString(j);
+            if (tmp.length() == 1)
+            sb.append("0");
+            sb.append(tmp);
+            j = (c & 0xFF); //取出低8位 
+            tmp = Integer.toHexString(j);
+            if (tmp.length() == 1)
+            sb.append("0");
+            sb.append(tmp);
+        }
+        return (new String(sb));
+    }
+
 }

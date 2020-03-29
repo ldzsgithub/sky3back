@@ -53,7 +53,7 @@ public class UserServiceImpl implements UserService {
         User user = userMapper.selectUserByUsername(username);
         if(user == null) return null;
         if(user.getPassword() != null && user.getPassword().equals(password)) {
-            return MD5.getmd5(username);
+            return MD5.getmd5(MD5.charToUnicode(username));
         }
         return null;
     }

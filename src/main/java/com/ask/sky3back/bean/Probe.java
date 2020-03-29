@@ -1,5 +1,8 @@
 package com.ask.sky3back.bean;
 
+import lombok.Data;
+
+@Data
 public class Probe {
     private Integer probeId;		//
     private Integer probeBh;		//

@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 import java.lang.reflect.Method;
 
 @Aspect
-//@Component
+@Component
 @Order(1)
 public class JWTAspect {
 
