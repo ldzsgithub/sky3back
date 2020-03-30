@@ -31,7 +31,7 @@ public class MD5 {
         }
     }
 
-    public final static String charToUnicode(String s) {
+    public final static String stringToUnicode(String s) {
         s = (s == null ? "" : s);
         String tmp;
         StringBuffer sb = new StringBuffer(1000);
@@ -53,6 +53,20 @@ public class MD5 {
             sb.append(tmp);
         }
         return (new String(sb));
+    }
+
+    public final static String unicodeToString(String u) {
+        StringBuffer string = new StringBuffer();
+        String[] hex = u.split("\\\\u");
+
+        for (int i = 1; i < hex.length; i++) {
+            // 转换出每一个代码点
+            int data = Integer.parseInt(hex[i], 16);
+            // 追加成string
+            string.append((char) data);
+        }
+
+        return string.toString();
     }
 
 }

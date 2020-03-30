@@ -2,6 +2,8 @@ package com.ask.sky3back.bean;
 
 import lombok.Data;
 
+import java.util.Set;
+
 @Data
 public class User {
     String id;
@@ -19,4 +21,6 @@ public class User {
     int status;
 
     String[] auth;
+
+    Set<Department> depts;
 }

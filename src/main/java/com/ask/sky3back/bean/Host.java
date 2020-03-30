@@ -1,5 +1,7 @@
 package com.ask.sky3back.bean;
 
+import java.util.Set;
+
 public class Host {
     private Integer hostId;			//主机id
     private Integer hostAddress;	//主机地址
@@ -13,4 +15,6 @@ public class Host {
     private Integer numberChannels;		//通道数量
     private String registerCard;		//物联网号码
     private Integer hostCollectiontime;		//采集间隔
+
+    Set<Probe> probes;
 }

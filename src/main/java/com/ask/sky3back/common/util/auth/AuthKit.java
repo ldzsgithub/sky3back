@@ -5,6 +5,7 @@ import com.ask.sky3back.common.anno.auth.AuthPermission;
 import com.ask.sky3back.common.anno.auth.AuthRole;
 import com.ask.sky3back.common.base.GlobalExceptionHandler;
 import com.ask.sky3back.common.base.ResultStatus;
+import com.ask.sky3back.common.util.MD5;
 import com.ask.sky3back.service.serviceImpl.UserServiceImpl;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.reflect.MethodSignature;
@@ -23,14 +24,11 @@ public class AuthKit {
 
     public static Object auth(ProceedingJoinPoint joinPoint) {
         Method method = ((MethodSignature) joinPoint.getSignature()).getMethod();
-        if(method == null) {
-            return null;
-        }
+        if(method == null) return null;
         RequestAttributes ra = RequestContextHolder.getRequestAttributes();
         ServletRequestAttributes sra = (ServletRequestAttributes) ra;
         HttpServletRequest request = sra.getRequest();
-        String username = request.getHeader("user");
-
+        String username = MD5.unicodeToString(request.getHeader("user"));
         User user = userService.selectUserByUsername(username);
         if(method.getAnnotation(AuthRole.class) != null) {
             if(user.getLoginflag() < method.getAnnotation(AuthRole.class).level()) {
@@ -38,8 +36,7 @@ public class AuthKit {
             };
         }
         if(method.getAnnotation(AuthPermission.class) != null) {
-            user.setAuth(user.getAuthority().split(","));
-            request.setAttribute("auth",user.getAuth());
+            request.setAttribute("auth", user.getAuthority().split(","));
         }
 
         Object o = null;
