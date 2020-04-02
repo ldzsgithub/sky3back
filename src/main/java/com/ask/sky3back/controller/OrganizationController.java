@@ -4,6 +4,7 @@ import com.ask.sky3back.bean.User;
 import com.ask.sky3back.common.anno.auth.AuthPermission;
 import com.ask.sky3back.common.anno.validate.NotNull;
 import com.ask.sky3back.common.base.JsonResult;
+import com.ask.sky3back.common.base.ResultStatus;
 import com.ask.sky3back.common.util.auth.Auth;
 import com.ask.sky3back.service.OrgService;
 import com.ask.sky3back.service.serviceImpl.OrgServiceImpl;
@@ -20,11 +21,10 @@ public class OrganizationController {
     private OrgServiceImpl orgService;
 
     @AuthPermission
-    @RequestMapping("/")
+    @RequestMapping("/get")
     public JsonResult selectOrg() {
-        Auth.get();
-        //User user = orgService.selectOrg();
-        return new JsonResult();
+        User user = orgService.selectOrg(Auth.get(), Auth.getUsername());
+        return new JsonResult(user);
     }
 
     @RequestMapping("/selectDepartment")

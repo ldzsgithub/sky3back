@@ -5,7 +5,7 @@ import com.ask.sky3back.common.anno.validate.NotEmpty;
 import com.ask.sky3back.common.anno.validate.RE;
 import com.ask.sky3back.common.base.JsonResult;
 import com.ask.sky3back.common.base.ResultStatus;
-import com.ask.sky3back.service.serviceImpl.UserServiceImpl;
+import com.ask.sky3back.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
     @Autowired
-    private UserServiceImpl userService;
+    private UserService userService;
 
     @RequestMapping("/login")
     public JsonResult login(@NotEmpty(msg = "请输入用户名") String username,

@@ -1,6 +1,7 @@
 package com.ask.sky3back.mapper;
 
 import com.ask.sky3back.bean.User;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository("userMapper")
@@ -18,5 +19,5 @@ public interface UserMapper {
 
     User selectUserByUsernameAll(String userName);
 
-    User selectOrgByUserId(String userId);
+    User selectOrg(String[] auth, String username);
 }

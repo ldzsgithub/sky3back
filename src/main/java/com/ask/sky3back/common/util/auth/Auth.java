@@ -15,4 +15,11 @@ public class Auth {
         return (String[])request.getAttribute("auth");
     }
 
+    public static String getUsername() {
+        RequestAttributes ra = RequestContextHolder.getRequestAttributes();
+        ServletRequestAttributes sra = (ServletRequestAttributes) ra;
+        HttpServletRequest request = sra.getRequest();
+        return (String)request.getAttribute("username");
+    }
+
 }

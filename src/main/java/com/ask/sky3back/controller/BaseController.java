@@ -4,7 +4,7 @@ import com.ask.sky3back.common.anno.auth.AuthPermission;
 import com.ask.sky3back.common.base.JsonResult;
 import com.ask.sky3back.common.anno.validate.NotEmpty;
 import com.ask.sky3back.common.util.auth.Auth;
-import com.ask.sky3back.service.serviceImpl.BaseServiceImpl;
+import com.ask.sky3back.service.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 public class BaseController {
 
     @Autowired
-    private BaseServiceImpl baseService;
+    private BaseService baseService;
 
     @RequestMapping("/selectUserById")
     public JsonResult selectUserById(String id, @NotEmpty(msg = "自定义的错误信息") String phoneNumber) {

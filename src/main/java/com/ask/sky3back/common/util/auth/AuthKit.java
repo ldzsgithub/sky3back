@@ -6,10 +6,12 @@ import com.ask.sky3back.common.anno.auth.AuthRole;
 import com.ask.sky3back.common.base.GlobalExceptionHandler;
 import com.ask.sky3back.common.base.ResultStatus;
 import com.ask.sky3back.common.util.MD5;
+import com.ask.sky3back.service.UserService;
 import com.ask.sky3back.service.serviceImpl.UserServiceImpl;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -20,15 +22,16 @@ import java.lang.reflect.Method;
 public class AuthKit {
 
     @Autowired
-    private static UserServiceImpl userService;
+    UserService userService;
 
-    public static Object auth(ProceedingJoinPoint joinPoint) {
+    public Object auth(ProceedingJoinPoint joinPoint) {
         Method method = ((MethodSignature) joinPoint.getSignature()).getMethod();
         if(method == null) return null;
         RequestAttributes ra = RequestContextHolder.getRequestAttributes();
         ServletRequestAttributes sra = (ServletRequestAttributes) ra;
         HttpServletRequest request = sra.getRequest();
         String username = MD5.unicodeToString(request.getHeader("user"));
+        System.out.println(userService);
         User user = userService.selectUserByUsername(username);
         if(method.getAnnotation(AuthRole.class) != null) {
             if(user.getLoginflag() < method.getAnnotation(AuthRole.class).level()) {
