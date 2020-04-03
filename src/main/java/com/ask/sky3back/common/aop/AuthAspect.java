@@ -5,7 +5,7 @@ import com.ask.sky3back.common.anno.auth.AuthPermission;
 import com.ask.sky3back.common.anno.auth.AuthRole;
 import com.ask.sky3back.common.base.GlobalExceptionHandler;
 import com.ask.sky3back.common.base.ResultStatus;
-import com.ask.sky3back.common.util.MD5;
+import com.ask.sky3back.common.util.Crypto;
 import com.ask.sky3back.service.UserService;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -39,7 +39,7 @@ public class AuthAspect {
         RequestAttributes ra = RequestContextHolder.getRequestAttributes();
         ServletRequestAttributes sra = (ServletRequestAttributes) ra;
         HttpServletRequest request = sra.getRequest();
-        String username = MD5.unicodeToString(request.getHeader("user"));
+        String username = Crypto.unicodeToString(request.getHeader("user"));
         request.setAttribute("username", username);
         User user = userService.selectUserByUsername(username);
         if(method.getAnnotation(AuthRole.class) != null) {

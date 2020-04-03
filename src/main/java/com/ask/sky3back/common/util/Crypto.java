@@ -2,7 +2,7 @@ package com.ask.sky3back.common.util;
 
 import java.security.MessageDigest;
 
-public class MD5 {
+public class Crypto {
 
     public final static String getmd5(String s) {
         char hexDigits[]={'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'};
@@ -41,7 +41,7 @@ public class MD5 {
         for (i = 0; i < s.length(); i++) {
             c = s.charAt(i);
             sb.append("\\u");
-            j = (c >>>8); //取出高8位 
+            j = (c >>> 8); //取出高8位 
             tmp = Integer.toHexString(j);
             if (tmp.length() == 1)
             sb.append("0");
@@ -58,14 +58,12 @@ public class MD5 {
     public final static String unicodeToString(String u) {
         StringBuffer string = new StringBuffer();
         String[] hex = u.split("\\\\u");
-
         for (int i = 1; i < hex.length; i++) {
             // 转换出每一个代码点
             int data = Integer.parseInt(hex[i], 16);
             // 追加成string
             string.append((char) data);
         }
-
         return string.toString();
     }
 

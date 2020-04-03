@@ -5,13 +5,11 @@ import com.ask.sky3back.common.anno.auth.AuthPermission;
 import com.ask.sky3back.common.anno.auth.AuthRole;
 import com.ask.sky3back.common.base.GlobalExceptionHandler;
 import com.ask.sky3back.common.base.ResultStatus;
-import com.ask.sky3back.common.util.MD5;
+import com.ask.sky3back.common.util.Crypto;
 import com.ask.sky3back.service.UserService;
-import com.ask.sky3back.service.serviceImpl.UserServiceImpl;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -30,7 +28,7 @@ public class AuthKit {
         RequestAttributes ra = RequestContextHolder.getRequestAttributes();
         ServletRequestAttributes sra = (ServletRequestAttributes) ra;
         HttpServletRequest request = sra.getRequest();
-        String username = MD5.unicodeToString(request.getHeader("user"));
+        String username = Crypto.unicodeToString(request.getHeader("user"));
         System.out.println(userService);
         User user = userService.selectUserByUsername(username);
         if(method.getAnnotation(AuthRole.class) != null) {
