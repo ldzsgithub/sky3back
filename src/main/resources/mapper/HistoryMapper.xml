@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ask.sky3back.mapper.HistoryMapper">
+
+    <select id="selectHistory" resultType="com.ask.sky3back.bean.HistoryRecord">
+        SELECT ${columName} as value , history_date as date
+		FROM Ask_history_${tableName}
+		WHERE
+		host_id = #{hostId} and history_date BETWEEN #{date} + ' 00:00:00' AND #{date} + ' 23:59:59'
+    </select>
+</mapper>

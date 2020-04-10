@@ -47,4 +47,13 @@
             </if>
         </where>
     </select>
+
+    <select id="selectProbeByProbeId" resultType="com.ask.sky3back.bean.Probe" parameterType="int">
+        SELECT
+        probe_bh as probeBh, host_id as hostId
+        FROM ASK_PROBE
+        <where>
+            PROBE_ID = #{probeId}
+        </where>
+    </select>
 </mapper>

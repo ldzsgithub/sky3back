@@ -19,6 +19,12 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    /**
+     * 登录
+     * @param username
+     * @param password
+     * @return
+     */
     @RequestMapping("/login")
     public JsonResult login(@NotEmpty(msg = "请输入用户名") String username,
                             @NotEmpty(msg = "请输入密码")String password) {
@@ -29,6 +35,13 @@ public class UserController {
         return new JsonResult(jwt);
     }
 
+    /**
+     * 注册
+     * @param username
+     * @param password
+     * @param phoneNumber
+     * @return
+     */
     @RequestMapping("/register")
     public JsonResult register(@NotEmpty(msg = "请输入用户名") String username,
                                @NotEmpty(msg = "请输入密码")String password,

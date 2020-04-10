@@ -3,9 +3,10 @@ server:
 spring:
   datasource:
     username: sa
-    password: 147258
+    password: 123qwe!@#
     driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
-    url: jdbc:sqlserver://localhost:1433;DatabaseName=ASK_CZZTDLC_DB
+    url: jdbc:sqlserver://27.191.238.137:20018;DatabaseName=ASK_ZHFNGT_DB
     type: com.alibaba.druid.pool.DruidDataSource
 mybatis:
   mapper-locations: classpath:/mapper/*Mapper.xml
+

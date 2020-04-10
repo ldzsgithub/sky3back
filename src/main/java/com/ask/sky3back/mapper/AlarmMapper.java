@@ -8,4 +8,6 @@ import java.util.List;
 @Repository("alarmMapper")
 public interface AlarmMapper {
     List<Probe> selectByHostId(int hostId);
+
+    Probe selectProbeByProbeId(int probeId);
 }

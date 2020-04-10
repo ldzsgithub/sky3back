@@ -29,3 +29,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### 数据库 ###
+.yml

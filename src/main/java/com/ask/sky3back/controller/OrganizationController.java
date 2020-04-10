@@ -17,6 +17,9 @@ public class OrganizationController {
     @Autowired
     private OrgServiceImpl orgService;
 
+    /**
+     * 5s查询一次 reids缓存
+     */
     @AuthPermission
     @RequestMapping("/get")
     public JsonResult selectOrg() {
