@@ -31,7 +31,19 @@ public class AlarmController {
     }
 
     /**
-     * 查询历史数据
+     * 历史数据折线图
+     * @param probeId
+     * @param date
+     * @return 24个int,每小时max值
+     */
+    @RequestMapping("/selectHistoryByProbeIdLine")
+    public JsonResult selectHistoryByProbeIdLine(@NotNull int probeId, @NotNull String date) {
+        int[] a = alarmService.selectHistoryByProbeIdLine(probeId, date);
+        return new JsonResult(a);
+    }
+
+    /**
+     * 查询历史数据,列表展示,全查
      * @param probeId
      * @param date
      * @return

@@ -1,6 +1,7 @@
 package com.ask.sky3back.service.serviceImpl;
 
 import com.ask.sky3back.bean.HistoryRecord;
+import com.ask.sky3back.bean.HistoryRecordLine;
 import com.ask.sky3back.bean.Probe;
 import com.ask.sky3back.mapper.AlarmMapper;
 import com.ask.sky3back.mapper.HistoryMapper;
@@ -9,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Map;
 
 @Service("alarmService")
 public class AlarmServiceImpl implements AlarmService {
@@ -26,10 +26,22 @@ public class AlarmServiceImpl implements AlarmService {
     @Override
     public List<HistoryRecord> selectHistoryByProbeId(int probeId, String date) {
         Probe probe = alarmMapper.selectProbeByProbeId(probeId);
-        System.out.println(probe.toString());
         String columName = "A" + probe.getProbeBh();
         String tableName = date.substring(0,date.length()-2);
         List<HistoryRecord> list = historyMapper.selectHistory(date, columName, tableName, probe.getHostId());
         return list;
+    }
+
+    @Override
+    public int[] selectHistoryByProbeIdLine(int probeId, String date) {
+        Probe probe = alarmMapper.selectProbeByProbeId(probeId);
+        String columName = "A" + probe.getProbeBh();
+        String tableName = date.substring(0,date.length()-2);
+        List<HistoryRecordLine> list = historyMapper.selectHistoryLine(date, columName, tableName, probe.getHostId());
+        int[] a = new int[24];
+        for(HistoryRecordLine s : list) {
+            a[s.getH()] = s.getValue();
+        }
+        return a;
     }
 }
