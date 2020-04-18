@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ask.sky3back.mapper.BaseMapper">
     <select id="selectUserById" resultType="com.ask.sky3back.bean.User" parameterType="java.lang.String">
+    SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED
         select * from ask_user where id = #{id}
     </select>
 </mapper>

@@ -38,6 +38,7 @@
 	</sql>
 
     <select id="selectByHostId" resultMap="ProbeResultMap" parameterType="int">
+        SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED
         SELECT
         <include refid="Base_Column_List"/>
         FROM ASK_PROBE
@@ -49,6 +50,7 @@
     </select>
 
     <select id="selectProbeByProbeId" resultType="com.ask.sky3back.bean.Probe" parameterType="int">
+        SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED
         SELECT
         probe_bh as probeBh, host_id as hostId
         FROM ASK_PROBE

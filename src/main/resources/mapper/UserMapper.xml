@@ -57,14 +57,17 @@
     </insert>
 
     <select id="selectUserById" resultType="com.ask.sky3back.bean.User" parameterType="java.lang.String">
+        SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED
         SELECT <include refid="Base_Column_List" /> FROM ASK_USER WHERE id = #{id}
     </select>
 
     <select id="selectUserByUsername" resultType="com.ask.sky3back.bean.User" parameterType="java.lang.String">
+        SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED
         SELECT <include refid="Base_Column_List" /> FROM ASK_USER WHERE name = #{username} and status = 0
     </select>
 
     <select id="selectUserByUsernameAll" resultType="com.ask.sky3back.bean.User" parameterType="java.lang.String">
+        SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED
         SELECT <include refid="Base_Column_List" /> FROM ASK_USER WHERE name = #{username}
     </select>
 
@@ -98,6 +101,7 @@
     </resultMap>
 
     <select id="selectOrg" resultMap="UserOrg">
+        SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED
         SELECT u.name, u.id, d.DEPARTMENT_ID, d.DEPARTMENT_NAME, h.HOST_ID, h.HOST_NAME,
         p.PROBE_ID, p.PROBE_NAME, p.realtime_value, p.low_value,
         p.high_value, p.probe_type, p.probe_remarks, p.host_id

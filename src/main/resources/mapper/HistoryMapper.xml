@@ -3,6 +3,7 @@
 <mapper namespace="com.ask.sky3back.mapper.HistoryMapper">
 
 	<select id="selectHistory" resultType="com.ask.sky3back.bean.HistoryRecord">
+	SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED
         SELECT ${columName} as value , history_date as date
 		FROM Ask_history_${tableName}
 		WHERE
@@ -11,6 +12,7 @@
     </select>
 
 	<select id="selectHistoryLine" resultType="com.ask.sky3back.bean.HistoryRecordLine">
+	SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED
         SELECT MAX(${columName}) as value , DATEPART(hour,history_date) as h
 		FROM Ask_history_${tableName}
 		WHERE
