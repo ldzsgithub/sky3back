@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/alarm")
@@ -20,10 +19,10 @@ public class AlarmController {
     @Autowired
     private AlarmService alarmService;
 
-    /*
-    * 实时数据
-    * params HostId 0全部
-    * */
+    /**
+     * 实时数据
+     * params HostId 0全部
+     */
     @RequestMapping("/selectByHostId")
     public JsonResult selectByHostId(@NotNull int hostId) {
         List<Probe> list = alarmService.selectByHostId(hostId);
