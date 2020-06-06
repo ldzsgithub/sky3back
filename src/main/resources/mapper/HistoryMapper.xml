@@ -16,7 +16,9 @@
         SELECT MAX(${columName}) as value , DATEPART(hour,history_date) as h
 		FROM Ask_history_${tableName}
 		WHERE
-		host_id = #{hostId} and history_date BETWEEN #{date} +' 00:00:00' AND #{date} +' 23:59:59'  group by DATEPART(hour,history_date)
+		host_id = #{hostId} and history_date
+		BETWEEN #{date} +' 00:00:00' AND #{date} +' 23:59:59'
+		group by DATEPART(hour,history_date)
 		ORDER BY DATEPART(hour,history_date)
     </select>
 </mapper>

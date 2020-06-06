@@ -1,12 +1,3 @@
-server:
-  port: 25275
 spring:
-  datasource:
-    username: sa
-    password: 123qwe!@#
-    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
-    url: jdbc:sqlserver://116.132.23.46:17810;DatabaseName=ASK_HBJD_DB
-    type: com.alibaba.druid.pool.DruidDataSource
-mybatis:
-  mapper-locations: classpath:/mapper/*Mapper.xml
-
+  profiles:
+    active: hbzh

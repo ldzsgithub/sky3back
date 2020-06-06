@@ -1,0 +1,11 @@
+server:
+  port: 25275
+spring:
+  datasource:
+    username: sa
+    password: 147258
+    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: jdbc:sqlserver://127.0.0.1:1433;DatabaseName=ASK_CZZTDLC_DB
+    type: com.alibaba.druid.pool.DruidDataSource
+mybatis:
+  mapper-locations: classpath:/mapper/*Mapper.xml

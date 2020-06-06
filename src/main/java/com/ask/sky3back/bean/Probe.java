@@ -33,7 +33,8 @@ public class Probe {
     private String host_name;		//
 
     private String probeManager;
-    private User users;
+    private String managerName;
+    private String managerId;
 
     private String probeArea;
 }

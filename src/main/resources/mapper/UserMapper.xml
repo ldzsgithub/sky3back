@@ -97,16 +97,18 @@
         <result property="highValue" column="high_value"/>
         <result property="probeType" column="probe_type"/>
         <result property="probeRemarks" column="probe_remarks"/>
-        <result property="hostId" column="host_id"/>
+        <result property="probeManager" column="probe_manager"/>
+        <result property="managerName" column="managerName"/>
+        <result property="managerId" column="managerId"/>
     </resultMap>
 
     <select id="selectOrg" resultMap="UserOrg">
         SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED
         SELECT u.name, u.id, d.DEPARTMENT_ID, d.DEPARTMENT_NAME, h.HOST_ID, h.HOST_NAME,
         p.PROBE_ID, p.PROBE_NAME, p.realtime_value, p.low_value,
-        p.high_value, p.probe_type, p.probe_remarks, p.host_id
-        FROM ASK_DEPARTMENT d, ASK_HOST h, ASK_PROBE p, ASK_USER u
-        WHERE name = #{username} and h.Department_Id = d.Department_Id and h.Host_Id = p.Host_Id
+        p.high_value, p.probe_type, p.probe_remarks, p.host_id, p.probe_manager, u2.name as managerName, u2.id as managerId
+        FROM ASK_DEPARTMENT d, ASK_HOST h, ASK_PROBE p, ASK_USER u, ASK_USER u2
+        WHERE u.name = #{username} and h.Department_Id = d.Department_Id and h.Host_Id = p.Host_Id and p.probe_manager = u2.id
         and h.DEPARTMENT_ID in
         <foreach collection="auth" open="(" separator="," close=")" item="a">
             #{a}

@@ -27,7 +27,7 @@ public class AlarmServiceImpl implements AlarmService {
     public List<HistoryRecord> selectHistoryByProbeId(int probeId, String date) {
         Probe probe = alarmMapper.selectProbeByProbeId(probeId);
         String columName = "A" + probe.getProbeBh();
-        String tableName = date.substring(0,date.length()-2);
+        String tableName = date.substring(0, date.length()-2);
         List<HistoryRecord> list = historyMapper.selectHistory(date, columName, tableName, probe.getHostId());
         return list;
     }
@@ -36,7 +36,7 @@ public class AlarmServiceImpl implements AlarmService {
     public int[] selectHistoryByProbeIdLine(int probeId, String date) {
         Probe probe = alarmMapper.selectProbeByProbeId(probeId);
         String columName = "A" + probe.getProbeBh();
-        String tableName = date.substring(0,date.length()-2);
+        String tableName = date.substring(0, date.length()-2);
         List<HistoryRecordLine> list = historyMapper.selectHistoryLine(date, columName, tableName, probe.getHostId());
         int[] a = new int[24];
         for(HistoryRecordLine s : list) {
